@@ -1,0 +1,17 @@
+pluginManagement {
+	repositories {
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		mavenCentral()
+		gradlePluginPortal()
+	}
+}
+
+// independed repositories
+include("dextek-decc")
+include("dextek-cyanchat")
+
+// should match your modid
+rootProject.name = 'dextek'

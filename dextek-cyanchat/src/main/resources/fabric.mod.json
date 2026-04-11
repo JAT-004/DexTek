@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "dextek-cyanchat",
+	"version": "${version}",
+	"name": "DexTek CyanChat",
+	"description": "You're lookin' at the future!",
+	"authors": [
+		"JAT"
+	],
+	"contact": {
+		"homepage": "https://github.com/JAT-004/DexTek",
+		"sources": "https://github.com/JAT-004/DexTek"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/dextek-cyanchat/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"jat.dextek.cyanchat.CyanChat"
+		],
+		"client": [
+			"jat.dextek.cyanchat.client.CyanChatClient"
+		]
+	},
+	"mixins": [
+		"dextek-cyanchat.mixins.json",
+		{
+			"config": "dextek-cyanchat.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.18.6",
+		"minecraft": "~1.21.10",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
