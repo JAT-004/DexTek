@@ -36,7 +36,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
     // Access core modification
-    modImplementation project(":dextek-decc")
+    implementation project(path: ":dextek-decc", configuration: "default")
 }
 
 processResources {
