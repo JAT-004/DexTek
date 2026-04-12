@@ -34,7 +34,10 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-	
+
+    // Database handling with SQLite
+    implementation "org.xerial:sqlite-jdbc:3.46.0.0"
+    include "org.xerial:sqlite-jdbc:3.46.0.0"
 }
 
 processResources {
