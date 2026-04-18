@@ -12,6 +12,7 @@ import java.util.UUID;
  * The uuid identifies the player.<br>
  * The name must be unique.<br>
  * A formatting is optional and can be null.<br>
+ * A nickname is optional and can be null<br>
  * A rank is optional and can be null.<br>
  * A status is optional and can be null.
  */
@@ -20,6 +21,7 @@ public class Player {
     private final String name;
     private final ChatFormatting formatting;
 
+    private final String nickname;
     private final String rank;
     private final String status;
 
@@ -28,6 +30,7 @@ public class Player {
         name = builder.name;
         formatting = builder.formatting;
 
+        nickname = builder.nickname;
         rank = builder.rank;
         status = builder.status;
     }
@@ -40,6 +43,7 @@ public class Player {
         private String name;
         private ChatFormatting formatting;
 
+        private String nickname;
         private String rank;
         private String status;
 
@@ -55,6 +59,11 @@ public class Player {
 
         public Builder formatting(@Nullable ChatFormatting formatting) {
             this.formatting = formatting;
+            return this;
+        }
+
+        public Builder nickname(@Nullable String nickname) {
+            this.nickname = nickname;
             return this;
         }
 
@@ -79,6 +88,10 @@ public class Player {
 
     public ChatFormatting getFormatting() {
         return formatting;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 
     public String getRank() {

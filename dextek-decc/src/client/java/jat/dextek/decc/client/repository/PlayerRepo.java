@@ -27,11 +27,12 @@ public class PlayerRepo {
      */
     public void upsert(@NotNull Player player) {
         String sql = """
-                INSERT INTO player(uuid, name, formatting, rank, status)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO player(uuid, name, formatting, nickname, rank, status)
+                VALUES (?, ?, ?, ?, ?, ?)
                 ON CONFLICT(uuid) DO UPDATE SET
                 name = excluded.name,
                 formatting = excluded.formatting,
+                nickname = excluded.nickname,
                 rank = excluded.rank,
                 status = excluded.status
                 """;
@@ -45,8 +46,9 @@ public class PlayerRepo {
             statement.setString(1, player.getUuid().toString());
             statement.setString(2, player.getName());
             statement.setString(3, formatting);
-            statement.setString(4, player.getRank());
-            statement.setString(5, player.getStatus());
+            statement.setString(4, player.getNickname());
+            statement.setString(5, player.getRank());
+            statement.setString(6, player.getStatus());
 
             statement.execute();
         } catch(SQLException exception) {
@@ -164,6 +166,7 @@ public class PlayerRepo {
                 .uuid(UUID.fromString(result.getString("uuid")))
                 .name(result.getString("name"))
                 .formatting(ChatFormatting.getByName(result.getString("formatting")))
+                .nickname(result.getString("nickname"))
                 .rank(result.getString("rank"))
                 .status(result.getString("status")));
     }

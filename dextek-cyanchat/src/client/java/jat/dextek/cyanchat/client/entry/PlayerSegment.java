@@ -44,6 +44,7 @@ public class PlayerSegment extends ChatSegment {
     public Component toComponent(@Nullable Map<String, String> valueMap) {
         if(isEmpty()) return null;
         // TODO
-        return new SegmentList(new Segment(player.getUuid().toString()), new Segment(player.getName())).toComponent();
+        if(player.getNickname() == null) return new Segment(player.getName()).toComponent();
+        return new SegmentList(new Segment(player.getNickname()), new Segment(player.getName())).toComponent();
     }
 }

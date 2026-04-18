@@ -23,6 +23,7 @@ public class Schema {
                         uuid TEXT PRIMARY KEY,
                         name TEXT NOT NULL UNIQUE,
                         formatting TEXT,
+                        nickname TEXT,
                         rank TEXT,
                         status TEXT
                     );
