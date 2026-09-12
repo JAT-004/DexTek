@@ -2,6 +2,7 @@ package jat.dextek.cyanchat.client;
 
 import jat.dextek.cyanchat.client.chat.ChatReceiver;
 import jat.dextek.cyanchat.client.chat.ChatSender;
+import jat.dextek.decc.client.ConfigManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
 import net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents;
@@ -12,6 +13,7 @@ import java.time.Instant;
 
 public class CyanChatClient implements ClientModInitializer {
     public static final String MOD_ID = "dextek-cyanchat";
+    public static final String CONFIG_NAME = "cyanchat";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     private final ChatReceiver chatReceiver = new ChatReceiver();
@@ -38,5 +40,27 @@ public class CyanChatClient implements ClientModInitializer {
 
         // load message
         LOGGER.info("loaded DexTek CyanChat");
+
+        CyanChatConfig config = Config.get();
 	}
+
+    public static class Config {
+        private static CyanChatConfig config;
+
+        public static CyanChatConfig get() {
+            if(config == null) load();
+            return config;
+        }
+
+        public static void load() {
+            String json = ConfigManager.load(CONFIG_NAME);
+            if(json == null) save();
+            config = ConfigManager.GSON.fromJson(json, CyanChatConfig.class);
+        }
+
+        public static void save() {
+            if(config == null) config = new CyanChatConfig();
+            ConfigManager.save(CONFIG_NAME, ConfigManager.GSON.toJson(config));
+        }
+    }
 }

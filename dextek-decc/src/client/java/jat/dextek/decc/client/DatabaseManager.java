@@ -11,7 +11,7 @@ import java.sql.SQLException;
  * Opens the only connection for the project on initialization. Closes the connection at the end.
  */
 public class DatabaseManager {
-    private final static String FILE_NAME = "decc.sqlite";
+    private final static String FILE_NAME = DeccClient.CONFIG_NAME + ".sqlite";
 
     private static DatabaseManager instance;
     private Connection connection;

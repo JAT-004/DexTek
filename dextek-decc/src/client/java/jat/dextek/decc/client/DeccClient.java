@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 public class DeccClient implements ClientModInitializer {
     public static final String MOD_ID = "dextek-decc";
+    public static final String CONFIG_NAME = "decc";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("dextek");
@@ -30,5 +31,27 @@ public class DeccClient implements ClientModInitializer {
 
         // close database connection on client shutdown
         ClientLifecycleEvents.CLIENT_STOPPING.register(client -> DatabaseManager.get().close());
+
+        DeccConfig config = Config.get();
 	}
+
+    public static class Config {
+        private static DeccConfig config;
+
+        public static DeccConfig get() {
+            if(config == null) load();
+            return config;
+        }
+
+        public static void load() {
+            String json = ConfigManager.load(CONFIG_NAME);
+            if(json == null) save();
+            config = ConfigManager.GSON.fromJson(json, DeccConfig.class);
+        }
+
+        public static void save() {
+            if(config == null) config = new DeccConfig();
+            ConfigManager.save(CONFIG_NAME, ConfigManager.GSON.toJson(config));
+        }
+    }
 }
