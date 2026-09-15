@@ -12,6 +12,7 @@ pluginManagement {
 // independed repositories
 include("dextek-decc")
 include("dextek-cyanchat")
+include("dextek-resistor")
 
 // should match your modid
 rootProject.name = 'dextek'
