@@ -2,12 +2,8 @@ package jat.dextek.resistor.client;
 
 import jat.dextek.decc.client.ConfigManager;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
-import net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.time.Instant;
 
 public class ResistorClient implements ClientModInitializer {
     public static final String MOD_ID = "dextek-resistor";
